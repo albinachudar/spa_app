@@ -1,0 +1,31 @@
+@startuml
+actor Клиент
+participant "SpaBookingApp" as App
+participant "JPanel" as Panel
+participant "JComboBox" as ComboBox
+participant "JRadioButton" as RadioButton
+participant "JTextArea" as TextArea
+participant "JCheckBox" as CheckBox
+participant "JFormattedTextField" as PhoneField
+participant "JButton" as Button
+participant "JTable" as Table
+participant "DefaultTableModel" as TableModel
+
+Клиент -> App: Запуск приложения
+App -> Panel: Создание вкладки "Выбор массажа"
+Panel -> ComboBox: Добавление филиалов
+Panel -> RadioButton: Добавление типов массажа
+Клиент -> ComboBox: Выбор филиала
+Клиент -> RadioButton: Выбор массажа
+App -> TextArea: Отображение описания массажа
+App -> Panel: Создание вкладки "Окончательная запись"
+Клиент -> CheckBox: Выбор дополнительных услуг
+App -> PhoneField: Ввод номера телефона
+Клиент -> Button: Нажатие "Записаться"
+App -> TableModel: Сохранение записи
+TableModel -> Table: Отображение записи
+Клиент -> Button: Нажатие "Просмотр записей"
+App -> Table: Отображение списка записей
+Клиент -> Button: Нажатие "Удалить запись"
+App -> TableModel: Удаление записи
+@enduml

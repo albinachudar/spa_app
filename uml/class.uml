@@ -1,0 +1,105 @@
+@startuml
+left to right direction
+' Группировка классов по функциональности
+package "GUI Components" {
+    class JPanel {
+        + void add(Component comp)
+        + void setLayout(LayoutManager mgr)
+    }
+
+    class JTabbedPane {
+        + void addTab(String title, Component comp)
+    }
+
+    class JComboBox {
+        + void addItem(String item)
+        + String getSelectedItem()
+    }
+
+    class JRadioButton {
+        + boolean isSelected()
+        + void setSelected(boolean b)
+    }
+
+    class JTextArea {
+        + void setText(String text)
+    }
+
+    class JLabel {
+        + void setText(String text)
+    }
+
+    class JCheckBox {
+        + boolean isSelected()
+        + void setSelected(boolean b)
+    }
+
+    class JFormattedTextField {
+        + void setValue(Object value)
+    }
+
+    class JButton {
+        + void addActionListener(ActionListener l)
+    }
+
+    class JTable {
+        + int getSelectedRow()
+    }
+
+    class DefaultTableModel {
+        + void addRow(Object[] rowData)
+        + void removeRow(int row)
+    }
+}
+
+package "Main Application" {
+    class SpaBookingApp {
+        - JTabbedPane tabbedPane
+        - JComboBox<String> branchComboBox
+        - JRadioButton[] massageOptions
+        - JTextArea descriptionArea
+        - JLabel priceLabel, imageLabel
+        - JCheckBox extraService1, extraService2, extraService3
+        - JFormattedTextField phoneField
+        - JButton bookButton, viewRecordsButton, confirmButton, clearButton
+        - JTextField selectedBranchField, selectedMassageField, totalPriceField
+        - JTable recordsTable
+        - DefaultTableModel tableModel
+        - List<String[]> records
+        - JComboBox<String> timeComboBox
+        - static final String FILE_PATH
+
+        + void main(String[] args)
+        + SpaBookingApp()
+        - JPanel createFirstTab()
+        - JPanel createSecondTab()
+        - JPanel createThirdTab()
+        - void updateDescriptionAndPrice(int index)
+        - void transferSelectionToSecondTab()
+        - void updateTotalPrice()
+        - void saveBooking()
+        - void loadRecords()
+        - void saveRecordsToFile()
+        - void deleteSelectedRecord()
+        - void confirmBooking()
+        - void clearSelection()
+        - String getSelectedMassage()
+    }
+}
+
+' Связи между классами
+SpaBookingApp --> JPanel
+SpaBookingApp --> JTabbedPane
+SpaBookingApp --> JComboBox
+SpaBookingApp --> JRadioButton
+SpaBookingApp --> JTextArea
+SpaBookingApp --> JLabel
+SpaBookingApp --> JCheckBox
+SpaBookingApp --> JFormattedTextField
+SpaBookingApp --> JButton
+SpaBookingApp --> JTable
+SpaBookingApp --> DefaultTableModel
+
+' Группировка связей
+SpaBookingApp ..> "GUI Components" : Использует
+@enduml
